@@ -1,0 +1,14 @@
+- name: disabling
+  command: dnf module disable nodejs -y
+
+- name: enabling 
+  command: dnf module enable nodejs:24 -y
+
+- name: Installing nodejs
+  dnf:
+    name: nodejs
+    state: present
+
+- name: Install dependencies
+  community.general.npm:
+    path: /app       

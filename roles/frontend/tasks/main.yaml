@@ -1,0 +1,45 @@
+- name: disabling nginx
+  command: dnf module disable nginx -y
+
+- name: enabling nginx
+  command: dnf module enable nginx:1.26 -y
+
+- name: Installing nginx 
+  package:
+    name: nginx
+    state: present
+
+- name: remove default html content in nginx   
+  command: rm -rf /usr/share/nginx/html/*
+
+- name: remove any existing frontend.zip  
+  file:
+    path: /tmp/frontend.zip
+    state: absent
+
+- name: downloading the frontend application
+  get_url:
+    url: https://raw.githubusercontent.com/daws-92s/roboshop-documentation/refs/heads/main/artifacts/frontend-v4.zip
+    dest: /tmp/frontend.zip
+
+- name: Unzip the frontend application
+  unarchive:
+    src: /tmp/frontend.zip 
+    dest: /usr/share/nginx/html   
+    remote_src: yes
+
+- name: coping frontend config 
+  template:
+    src: roboshop.conf.j2
+    dest: /etc/nginx/default.d/roboshop.conf    
+  notify: restart nginx   
+
+- name: deamon reload
+  systemd_service:
+    daemon_reload: true
+
+# - name: enable and restart the server
+#   service:
+#     name: nginx
+#     state: restarted
+#     enabled: yes         

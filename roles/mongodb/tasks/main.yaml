@@ -1,0 +1,31 @@
+  
+- name: copy mongo repo
+  copy:
+      src: mongo.repo
+      dest: /etc/yum.repos.d/mongo.repo
+
+- name: Installing mongodb
+  package:
+    name: mongodb-org
+    state: present
+
+- name: Starting mongodb service
+  service:
+    name: mongod
+    state: started
+
+- name: Allowing remote connections
+  replace:
+    path: /etc/mongod.conf
+    regexp: 127.0.0.1
+    replace: 0.0.0.0
+
+- name: Restarting mongodb
+  service:
+    name: mongod
+    state: restarted    
+
+
+  #  - name:
+  #    debug:
+  #     msg: "{{ app_name }}"    

@@ -1,0 +1,4 @@
+- name: this is common for main tasks
+  debug:
+    msg: "Hi..! This is for common"
+    

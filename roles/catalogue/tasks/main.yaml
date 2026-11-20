@@ -1,0 +1,48 @@
+- name: print variables
+  debug:
+    msg: "COURSE: {{ course }} and TOPIC: {{ topic }}"
+
+- name: application setup
+  include_role:
+    name: common
+    tasks_from: app-setup
+
+- name: nodejs setup
+  include_role:
+    name: common
+    tasks_from: nodejs    
+
+- name: systemd setup
+  include_role:
+    name: common
+    tasks_from: systemd-setup 
+
+
+- name: Copying mongo repo
+  copy: 
+    src: mongo.repo
+    dest: /etc/yum.repos.d/mongo.repo
+
+- name: Installing mongo server
+  dnf:
+    name: mongodb-mongosh
+    state: present
+
+- name: check product loaded or not  
+  command: mongosh --host "{{ mongodb_host }}" --quiet --eval 'db.getSiblingDB("{{ component }}").products.countDocuments()'
+  register: product_count
+
+- name: product count  
+  debug:
+    msg: "{{ product_count }}"           
+
+- name: Load data    
+  shell: mongosh --host "{{ mongodb_host }}" < /app/db/master-data.js
+  when: " product_count.stdout | int == 0 "
+
+- name: demon reload and app restart
+  include_role:
+    name: common
+    tasks_from: restart       
+
+  

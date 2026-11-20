@@ -1,0 +1,30 @@
+# ansible_user: ec2-user
+# ansible_password: DevOps321
+# mysql_root_password: RoboShop@1
+
+# ansible_user: {{ vault_ansible_user }}
+# ansible_password: {{ vault_ansible_password }}
+# mysql_root_password: {{ mysql_root_password }}
+
+
+# mysql_root_password: "{{ lookup('amazon.aws.aws_secret', 'roboshop/dev/ansible', region='us-east-1') | from_json | json_query('mysql_root_password') }}"
+# #ansible_user: "{{ lookup('amazon.aws.aws_secret', 'roboshop/dev/ansible', region='us-east-1') | from_json | json_query('ansible_user') }}"
+# #ansible_password: "{{ lookup('amazon.aws.aws_secret', 'roboshop/dev/ansible', region='us-east-1') | from_json | json_query('ansible_password') }}"
+# rabbitmq_user: "{{ vault_rabbitmq_user }}"
+# rabbitmq_password: "{{ vault_rabbitmq_password }}"
+# Shipping_db_user: "{{ vault_shipping_db_user }}"
+# Shipping_db_password: "{{ vault_shipping_db_password }}"
+# AMQP_USER: "{{ vault_AMQP_user }}" 
+# AMQP_PASS: "{{ vault_AMQP_pass }}"
+
+
+
+mongodb_host: mongodb.jkrdigital.store
+redis_host: redis.jkrdigital.store
+catalogue_host: catalogue.jkrdigital.store
+user_host: user.jkrdigital.store
+cart_host: cart.jkrdigital.store
+shipping_host: shipping.jkrdigital.store
+mysql_host: mysql.jkrdigital.store
+payment_host: payment.jkrdigital.store
+rabbitmq_host: rabbitmq.jkrdigital.store

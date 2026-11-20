@@ -1,0 +1,3 @@
+- name: this is from example in ansible-roles
+  debug: 
+    msg: Hi....! I am from example role as dependency

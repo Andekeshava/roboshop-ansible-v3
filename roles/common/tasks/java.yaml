@@ -1,0 +1,11 @@
+- name: Enable maven
+  command: dnf module enable maven:3.9 -y
+
+- name: Installing maven
+  dnf:
+    name:
+    - maven
+    - java-25-openjdk-devel
+    - maven-openjdk25
+    - mysql
+    state: present

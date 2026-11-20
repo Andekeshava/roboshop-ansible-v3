@@ -1,0 +1,26 @@
+- name: application setup
+  include_role:
+    name: common
+    tasks_from: app-setup
+
+- name: PYTHON setup
+  include_role:
+    name: common
+    tasks_from: python   
+
+- name: systemd setup
+  include_role:
+    name: common
+    tasks_from: systemd-setup 
+
+- name: Install dependencies in virtual environment
+  pip:
+    requirements: /app/requirements.txt
+    virtualenv: /app/.venv
+    virtualenv_command: python3.14 -m venv
+
+- name: demon reload and app restart
+  include_role:
+    name: common
+    tasks_from: restart  
+

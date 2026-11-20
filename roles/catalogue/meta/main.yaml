@@ -1,0 +1,2 @@
+dependencies:
+  - role: examples #catalouge related dependencies will download in catalogue server. same way we created example folder in roles and want to download dependencies of example in catalogue so we are giving role as example.
