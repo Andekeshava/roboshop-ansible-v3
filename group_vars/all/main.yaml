@@ -19,12 +19,12 @@
 
 
 
-mongodb_host: mongodb.jkrdigital.store
-redis_host: redis.jkrdigital.store
-catalogue_host: catalogue.jkrdigital.store
-user_host: user.jkrdigital.store
-cart_host: cart.jkrdigital.store
-shipping_host: shipping.jkrdigital.store
-mysql_host: mysql.jkrdigital.store
-payment_host: payment.jkrdigital.store
-rabbitmq_host: rabbitmq.jkrdigital.store
+mongodb_host: mongodb-{{ env }}.jkrdigital.store
+redis_host: redis-{{ env }}.jkrdigital.store
+catalogue_host: catalogue-{{ env }}.jkrdigital.store
+user_host: user-{{ env }}.jkrdigital.store
+cart_host: cart-{{ env }}.jkrdigital.store
+shipping_host: shipping-{{ env }}.jkrdigital.store
+mysql_host: mysql-{{ env }}.jkrdigital.store
+payment_host: payment-{{ env }}.jkrdigital.store
+rabbitmq_host: rabbitmq-{{ env }}.jkrdigital.store
