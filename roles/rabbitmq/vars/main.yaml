@@ -1,1 +1,2 @@
-mysql_root_password: "{{ lookup('amazon.aws.aws_ssm', '/roboshop/{{ env }}/mysql_root_password', decrypt=True, region='us-east-1') }}"
+rabbitmq_user: "{{ lookup('amazon.aws.aws_ssm', '/roboshop/{{ env }}/rabbitmq_user', decrypt=True, region='us-east-1') }}"
+rabbitmq_password: "{{ lookup('amazon.aws.aws_ssm', '/roboshop/{{ env }}/rabbitmq_password', decrypt=True, region='us-east-1') }}"
