@@ -10,7 +10,15 @@
   service:
     name: mysqld
     state: started
-    enabled: yes      
+    enabled: yes 
+
+- name: Install boto3 and botocore via pip
+  pip:
+    name:
+      - boto3
+      - botocore
+    state: present
+    executable: pip3.9          
 
 - name: Setting up root password
   command: mysql_secure_installation --set-root-pass "{{ mysql_root_password }}"   
